@@ -1,0 +1,20 @@
+---
+- name: Install curl
+  apk:
+   name: curl
+   state: present
+   update_cache: yes
+
+
+- name: Download k3s setup script
+  get_url:
+    url: https://get.k3s.io
+    dest: /tmp/k3s_setup
+    mode: 0755
+
+- name: Update path for rc-update
+  ansible.builtin.replace:
+    path: /tmp/k3s_setup
+    regexp: 'rc-update'
+    replace: '/sbin/rc-update'
+
