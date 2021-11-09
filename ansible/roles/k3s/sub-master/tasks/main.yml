@@ -1,0 +1,11 @@
+---
+
+- name: Wait for vip-ip ready
+  wait_for:
+    host: "{{ vip_address }}" 
+    port: 6443
+    delay: 10
+
+
+- name: Join main master
+  shell: K3S_TOKEN={{ hostvars[groups['master'][0]]['token'] }} /tmp/k3s_setup {{ extra_server_args | default("") }} --server https://{{ vip_address }}:6443  
