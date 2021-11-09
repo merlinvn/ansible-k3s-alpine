@@ -4,8 +4,8 @@
 
 - name: Uninstall k3s on master
   shell: "/usr/local/bin/k3s-uninstall.sh"
-  when: "'master' in {{group_names}}"
+  when: "'master' in group_names"
 
 - name: Uninstall k3s on worker
   shell: "/usr/local/bin/k3s-agent-uninstall.sh"
-  when: "'worker' in {{group_names}}"
+  when: "'worker' in group_names"

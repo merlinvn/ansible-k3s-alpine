@@ -1,7 +1,7 @@
 ---
 
 - name: Install k3s master node
-  shell: /tmp/k3s_setup
+  shell: /tmp/k3s_setup {{ extra_server_args | default("") }}
 
 
 # - name: Copy K3s service file
