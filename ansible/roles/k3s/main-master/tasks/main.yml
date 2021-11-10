@@ -25,9 +25,11 @@
     port: 6443
     delay: 10
 
-- name: Install metallb
-  include: install_metallb.yml
-
+# - name: Install metallb
+#   include: install_metallb.yml
+# 
+# - name: Install ingress nginx
+#   include: install_ingress_nginx.yml
 
 # - name: Restore node-token file access
 #   file:

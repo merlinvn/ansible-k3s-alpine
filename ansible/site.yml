@@ -5,7 +5,6 @@
   become: yes
   roles:
     - role: prereq
-#     - role: download
 
 - hosts: master[0]
   become: yes
@@ -21,3 +20,16 @@
   become: yes
   roles:
     - role: k3s/worker
+ 
+- hosts: master[0]
+  become: yes
+  tasks:
+    - name: Install MetalLB
+      include_role:
+        name: k3s/deployments
+        tasks_from: install_metallb
+
+    - name: Install Ingress Nginx
+      include_role:
+        name: k3s/deployments
+        tasks_from: install_ingress_nginx
