@@ -5,7 +5,6 @@
    state: present
    update_cache: yes
 
-
 - name: Download k3s setup script
   get_url:
     url: https://get.k3s.io

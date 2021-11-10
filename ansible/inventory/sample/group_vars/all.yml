@@ -1,12 +1,18 @@
 ---
 k3s_version: v1.22.3+k3s1
+metallb_version: v0.11.0
+
 ansible_user: root
 master_ip: "{{ hostvars[groups['master'][0]]['ansible_host'] | default(groups['master'][0]) }}"
 
 vip_address: 10.10.10.230
 vip_interface: eth0
 
-extra_server_args: "--tls-san {{ vip_address }} --disable servicelb --disable traefik --node-taint node-role.kubernetes.io/master=true:NoSchedule --datastore-endpoint postgres://postgres:password@10.10.10.24:5432/k3s_demo?sslmode=disable"
+metallb_addresses: 10.10.10.240-10.10.10.249
+
+db_url: postgres://postgres:password@10.10.10.24:5432/k3s_demo?sslmode=disable
+
+extra_server_args: "--tls-san {{ vip_address }} --disable servicelb --disable traefik --node-taint node-role.kubernetes.io/master=true:NoSchedule --datastore-endpoint {{ db_url }}"
 extra_agent_args: ""
 
 ansible_ssh_private_key_file: ~/Projects/k3s-HA/sshkey/id_ed25519
