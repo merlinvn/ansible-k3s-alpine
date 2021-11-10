@@ -1,0 +1,14 @@
+---
+
+- name: Deploy cert-manager
+  shell: >
+    /usr/local/bin/kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/{{ cert_manager_version }}/cert-manager.yaml
+
+# - name: create issuer from template
+#   template:
+#     src: "cluster-issuer.yaml.j2"
+#     dest: "/tmp/cluster-issuer.yaml"
+# 
+# - name: create self-signed ClusterIssuer
+#   shell: >
+#     /usr/local/bin/kubectl apply -f /tmp/cluster-issuer.yaml

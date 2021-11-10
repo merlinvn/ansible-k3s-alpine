@@ -27,9 +27,14 @@
     - name: Install MetalLB
       include_role:
         name: k3s/deployments
-        tasks_from: install_metallb
+        tasks_from: metallb
 
     - name: Install Ingress Nginx
       include_role:
         name: k3s/deployments
-        tasks_from: install_ingress_nginx
+        tasks_from: ingress_nginx
+
+    - name: Install cert-manager
+      include_role:
+        name: k3s/deployments
+        tasks_from: cert-manager
