@@ -4,6 +4,7 @@
    name: curl
    state: present
    update_cache: yes
+  when: ansible_facts['distribution'] == "Alpine"
 
 - name: Download k3s setup script
   get_url:
@@ -16,4 +17,4 @@
     path: /tmp/k3s_setup
     regexp: 'rc-update'
     replace: '/sbin/rc-update'
-
+  when: ansible_facts['distribution'] == "Alpine"
