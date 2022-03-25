@@ -34,11 +34,11 @@
         name: k3s/deployments
         tasks_from: ingress_nginx
 
-    - name: Install cert-manager
-      include_role:
-        name: k3s/deployments
-        tasks_from: cert-manager
-
+#     - name: Install cert-manager
+#       include_role:
+#         name: k3s/deployments
+#         tasks_from: cert-manager
+# 
     - name: Copy config file to user home directory
       copy:
         src: /etc/rancher/k3s/k3s.yaml
